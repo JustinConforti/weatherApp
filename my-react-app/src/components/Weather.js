@@ -1,27 +1,31 @@
 import React from "react";
-import { Card } from 'semantic-ui-react'
 import moment from 'moment';
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-  crossorigin="anonymous"
-/>
+import { Card } from 'react-bootstrap';
+import ListGroup from 'react-bootstrap/ListGroup';
+
+
+
 
 const Weather = ({weatherData}) => (
-    <Card>
-    <Card.Content>
-        <p> Today is : {moment().format('dddd')}</p>
-    <div className ="main">
-        <Card.Header className="header">City Name: {weatherData.name}</Card.Header>
-    </div>
-        <p className ="temp">Temperature: {weatherData.main.temp} &deg;F</p>
-        <p>Sunrise: {new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString('en-IN')}</p>
-        <p>Sunset: {new Date(weatherData.sys.sunset * 1000).toLocaleTimeString('en-IN')}</p>
-        <p>Description: {weatherData.weather[0].description}</p>
-        <p>Humdity: {weatherData.main.humidity}% </p>
-    </Card.Content>
+    <Card style={{ width: '18rem' }}>
+    <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+    <Card.Body>
+      <Card.Title>{moment().format('dddd')}'s Weather Forcast {moment().format('LL')} </Card.Title>
+      <Card.Text>
+       for the great city of: <div className = 'cityName'>{weatherData.name}</div>
+      </Card.Text>
+    </Card.Body>
+    <ListGroup className="list-group-flush">
+      <ListGroup.Item>{weatherData.main.temp} &deg;F</ListGroup.Item>
+      <ListGroup.Item>Humidity: {weatherData.main.humidity} %</ListGroup.Item>
+      <ListGroup.Item>{weatherData.weather[0].main} sky</ListGroup.Item>
+    </ListGroup>
+    <Card.Body>
+      <Card.Link href="#">Card Link</Card.Link>
+    </Card.Body>
   </Card>
+
+
 )
 
 

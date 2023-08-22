@@ -1,12 +1,8 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
 import Weather from './components/Weather';
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-  crossorigin="anonymous"
-/>
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/navbar';
 
 function App() {
   
@@ -36,6 +32,7 @@ function App() {
   console.log(data)
   return (
     <div className="App">
+      <NavBar weatherData={data} />
       {(typeof data.main != 'undefined') ? (
         <Weather weatherData={data}/>
       ): (
