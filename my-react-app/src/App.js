@@ -9,12 +9,15 @@ function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState([true]);
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("fetching data")
       navigator.geolocation.getCurrentPosition(function(position) {
         setLat(position.coords.latitude);
         setLong(position.coords.longitude);
+        console.log(lat, long);
       });
 
       await fetch(`${process.env.REACT_APP_API_URL}/weather/?lat=${lat}&lon=${long}&units=imperial&APPID=${process.env.REACT_APP_API_KEY}`)
@@ -24,6 +27,7 @@ function App() {
           console.log(res)
         ) : (
           setData(res)
+        
         )}
       });
     }
@@ -32,12 +36,17 @@ function App() {
   console.log(data)
   return (
     <div className="App">
-      <NavBar weatherData={data} />
       {(typeof data.main != 'undefined') ? (
-        <Weather weatherData={data}/>
+        <NavBar weatherData={data} />
       ): (
         <div></div>
       )}
+      {(typeof data.main != 'undefined') ? (
+        <Weather weatherData={data} />
+      ): (
+        <div></div>
+      )}
+
       
     </div>
   );

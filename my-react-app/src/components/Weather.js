@@ -2,13 +2,12 @@ import React from "react";
 import moment from 'moment';
 import { Card } from 'react-bootstrap';
 import ListGroup from 'react-bootstrap/ListGroup';
-
-
+import icon from '../images/01d.png';
 
 
 const Weather = ({weatherData}) => (
-    <Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+  <Card style={{ width: '18rem' }}>
+    <Card.Img variant="top" src={icon} />
     <Card.Body>
       <Card.Title>{moment().format('dddd')}'s Weather Forcast {moment().format('LL')} </Card.Title>
       <Card.Text>
